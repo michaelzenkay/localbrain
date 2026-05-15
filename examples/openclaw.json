@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "localbrain": {
+      "transport": "stdio",
+      "command": "node",
+      "args": ["<repo>/scripts/localbrain-stdio.mjs"]
+    }
+  }
+}

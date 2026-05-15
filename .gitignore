@@ -1,0 +1,23 @@
+.env
+.env.local
+supabase/.temp
+node_modules
+*.log
+
+# Local database/state exports
+backups/
+brains/
+dumps/
+exports/
+*.dump
+*.sql.gz
+*.sqlite
+*.sqlite3
+
+# Local editor/runtime noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tmp
+*.bak

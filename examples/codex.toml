@@ -1,0 +1,3 @@
+[mcp_servers.localbrain]
+command = "node"
+args = ["<repo>/scripts/localbrain-stdio.mjs"]
