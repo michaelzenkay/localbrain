@@ -78,6 +78,7 @@ async function post(body) {
   const headers = {
     "content-type": "application/json",
     "x-brain-key": KEY,
+    "x-brain-client": "agent-readonly",
     accept: "application/json, text/event-stream",
   };
   if (sessionId) headers["mcp-session-id"] = sessionId;

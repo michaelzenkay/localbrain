@@ -5,10 +5,28 @@
 Start the function:
 
 ```powershell
-supabase functions serve local-memory-mcp --env-file .env
+supabase functions serve local-memory-mcp --network-id localbrain-loopback --env-file .env
 ```
 
 Check that `LOCALBRAIN_MCP_URL` matches the API port printed by Supabase.
+
+## Startup says the firewall rule is missing
+
+Open PowerShell as Administrator and run:
+
+```powershell
+powershell -NoProfile -File .\scripts\install-localbrain-firewall.ps1
+```
+
+The startup helper intentionally refuses to continue without this rule.
+
+## An MCP client cannot capture
+
+This is expected. General MCP clients are read-only. Use the explicit CLI:
+
+```powershell
+node .\scripts\localbrain-cli.mjs capture localbrain "Text to remember"
+```
 
 ## Missing access key
 
@@ -29,5 +47,5 @@ When the Edge Function runs in Docker, `OLLAMA_BASE` should usually be
 
 ## Search returns no results
 
-Lower the `threshold` argument temporarily. Confirm the smoke test can capture
-and search a unique thought.
+Lower the `threshold` argument temporarily. Confirm the CLI or smoke test can
+capture and search a unique thought.

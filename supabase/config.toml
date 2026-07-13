@@ -20,8 +20,14 @@ schema_paths = []
 enabled = false
 
 [studio]
-enabled = true
+enabled = false
 port = 54323
+
+[local_smtp]
+enabled = false
+
+[analytics]
+enabled = false
 
 [auth]
 enabled = false

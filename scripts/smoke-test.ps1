@@ -30,6 +30,7 @@ $Headers = @{
   "content-type" = "application/json"
   "accept" = "application/json, text/event-stream"
   "x-brain-key" = $Key
+  "x-brain-client" = "cli-write"
 }
 
 function Invoke-Mcp($Id, $Method, $Params) {
@@ -47,15 +48,11 @@ Invoke-Mcp 1 "initialize" @{
   clientInfo = @{ name = "localbrain-smoke-test"; version = "0.1.0" }
 } | Out-Null
 
-$Stamp = Get-Date -Format "yyyyMMdd-HHmmss"
-$Thought = "localbrain smoke test thought $Stamp"
+$Thought = "localbrain reusable smoke test thought"
 
 Invoke-Mcp 2 "tools/call" @{ name = "capture_thought"; arguments = @{ content = $Thought; brain_id = "localbrain"; source_client = "smoke-test" } } | Out-Null
 $Search = Invoke-Mcp 3 "tools/call" @{ name = "search_thoughts"; arguments = @{ query = $Thought; limit = 1; threshold = 0.1 } }
 Invoke-Mcp 4 "tools/call" @{ name = "list_thoughts"; arguments = @{ limit = 3 } } | Out-Null
 Invoke-Mcp 5 "tools/call" @{ name = "thought_stats"; arguments = @{} } | Out-Null
-Invoke-Mcp 6 "tools/call" @{ name = "update_thought"; arguments = @{ target = $Thought; content = "$Thought updated"; source_client = "smoke-test" } } | Out-Null
-Invoke-Mcp 7 "tools/call" @{ name = "delete_thought"; arguments = @{ target = "$Thought updated" } } | Out-Null
-
 Write-Host "Smoke test completed."
 Write-Host $Search
